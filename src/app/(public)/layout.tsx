@@ -1,25 +1,15 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
-import { useTheme } from "@/components/ThemeProvider";
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
-    <div 
-      className={`min-h-screen flex flex-col transition-all duration-500 ${
-        isDark 
-          ? "bg-night-900" 
-          : "bg-sky-50"
-      }`}
-    >
-      <Navbar />
-      <main className="flex-1 pt-20">{children}</main>
-      <Footer />
+    <div className="flex flex-col min-h-[calc(100vh-5rem)]">
+      <main className="flex-1 w-full flex flex-col items-center">{children}</main>
+      <div className="relative z-10 w-full mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 }

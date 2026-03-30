@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 type Theme = "light" | "dark";
 
 function getServerSnapshot(): Theme {
-  return "light";
+  return "dark";
 }
 
 function subscribe(callback: () => void) {
@@ -19,10 +19,10 @@ function subscribe(callback: () => void) {
 }
 
 function getClientSnapshot(): Theme {
-  if (typeof window === "undefined") return "light";
-  const stored = localStorage.getItem("theme") as Theme | null;
-  if (stored) return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  if (typeof window !== "undefined") {
+    document.documentElement.classList.add("dark");
+  }
+  return "dark";
 }
 
 export function useDarkMode() {
@@ -33,17 +33,7 @@ export function useDarkMode() {
   );
 
   const toggleTheme = () => {
-    const currentTheme = getClientSnapshot();
-    const newTheme: Theme = currentTheme === "light" ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
-    const root = document.documentElement;
-    if (newTheme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    window.dispatchEvent(new Event("storage"));
-    window.dispatchEvent(new Event("theme-change"));
+    // Disabled toggle: site is locked to dark mode
   };
 
   return { theme, toggleTheme };
