@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -110,12 +111,16 @@ export default function HomePage() {
         <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ease-in-out delay-200 ${
           isDark ? "opacity-100" : "opacity-100"
         }`}>
-          <Button variant="primary" size="lg">
-            View Portfolio
-          </Button>
-          <Button variant="secondary" size="lg">
-            Get in Touch
-          </Button>
+          <Link href="/portfolio">
+            <Button variant="primary" size="lg" className="w-full sm:w-auto">
+              View Portfolio
+            </Button>
+          </Link>
+          <Link href="/about">
+            <Button variant="secondary" size="lg" className="w-full sm:w-auto">
+              Get in Touch
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
