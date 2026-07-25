@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useTheme } from "@/components/ThemeProvider";
 
 const footerLinks = [
   { href: "/about", label: "About" },
@@ -9,36 +6,22 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { href: "#", label: "GitHub", icon: GitHubIcon },
-  { href: "#", label: "Twitter", icon: TwitterIcon },
-  { href: "#", label: "LinkedIn", icon: LinkedInIcon },
+  { href: "https://github.com/suryardh", label: "GitHub", icon: GitHubIcon },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   return (
     <footer className="relative z-10 mt-auto">
-      <div 
-        className={`max-w-7xl mx-auto px-6 py-8 transition-all duration-500 ${
-          isDark 
-            ? "bg-night-900/50" 
-            : "bg-white/50"
-        }`}
-      >
+      <div className="w-full mx-auto px-6 py-8 bg-night-900/50">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             {footerLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors duration-500 ${
-                  isDark 
-                    ? "text-night-400 hover:text-sky-400" 
-                    : "text-night-500 hover:text-sky-600"
-                }`}
+                className="text-sm text-night-400 hover:text-sky-400 transition-colors"
               >
                 {link.label}
               </Link>
@@ -52,11 +35,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`transition-colors duration-500 ${
-                  isDark 
-                    ? "text-night-400 hover:text-sky-400" 
-                    : "text-night-500 hover:text-sky-600"
-                }`}
+                className="text-night-400 hover:text-sky-400 transition-colors"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
@@ -64,11 +43,7 @@ export function Footer() {
             ))}
           </div>
 
-          <p className={`text-sm transition-colors duration-500 ${
-            isDark 
-              ? "text-night-500" 
-              : "text-night-400"
-          }`}>
+          <p className="text-sm text-night-500">
             {currentYear} Yuuishikii. All rights reserved.
           </p>
         </div>

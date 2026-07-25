@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Build Yuuishikii portfolio site",
+    "completed": true
+  },
+  {
+    "id": 2,
+    "title": "Explore new Next.js 15 features",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "Integrate AI companion into web interface",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "title": "Optimize Core Web Vitals",
+    "completed": true
+  }
+]

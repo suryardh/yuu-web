@@ -82,7 +82,12 @@ export default function LabPage() {
       setResponse(data);
       setMeta({ status: res.status, statusText: res.statusText, time, size });
     } catch (err: any) {
-      setError(err.message || "Network error. This might be due to CORS restrictions.");
+      const msg = err.message || "";
+      setError(
+        msg.includes("Failed to fetch") || msg.includes("NetworkError")
+          ? "Network Error — kemungkinan besar ini masalah CORS. Coba pakai API yang support CORS (contoh: jsonplaceholder.typicode.com)."
+          : msg || "Terjadi error yang tidak terduga."
+      );
       setMeta({ status: 0, statusText: "Error", time: Date.now() - start, size: 0 });
     } finally {
       setLoading(false);
@@ -220,7 +225,7 @@ export default function LabPage() {
                 {meta && (
                   <>
                     <div className={`px-4 py-1.5 rounded-lg border text-sm font-mono font-bold flex items-center gap-2.5 ${getStatusColor(meta.status)}`}>
-                      <div className="w-2 h-2 rounded-full bg-current animate-pulse" />
+                      <div className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
                       {meta.status === 0 ? "ERR" : meta.status} {meta.statusText}
                     </div>
                     <div className="text-sm font-mono text-night-300 flex items-center gap-2 bg-night-900/50 px-3 py-1 rounded-lg border border-night-800">
