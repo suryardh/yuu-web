@@ -9,9 +9,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = "rounded-xl transition-all duration-300";
     
     const variants = {
-      default: "bg-card text-card-foreground border border-night-200 dark:border-night-700",
-      elevated: "bg-card text-card-foreground shadow-lg shadow-night-200/50 dark:shadow-night-900/50",
-      glass: "bg-white/60 backdrop-blur-md border border-white/20 dark:bg-night-800/60 dark:border-night-700/50",
+      default: "bg-neutral-900 text-white border border-neutral-800",
+      elevated: "bg-neutral-900 text-white shadow-lg shadow-black/50",
+      glass: "bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50",
     };
 
     return (

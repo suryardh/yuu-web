@@ -6,14 +6,13 @@
 }
 
 #nprogress .bar {
-  background: var(--color-sky-400); /* Use our primary color */
+  background: #fff;
   position: fixed;
   z-index: 1031;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px; /* Thicker bar */
-  box-shadow: 0 0 10px var(--color-sky-400), 0 0 5px var(--color-sky-400); /* Add a glow */
+  height: 2px;
 }
 
 #nprogress .peg {
@@ -22,45 +21,8 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px var(--color-sky-400), 0 0 5px var(--color-sky-400); /* Add a glow */
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px);
-}
-
-@theme {
-  --color-sky-400: #38bdf8;
-  --color-sky-500: #0ea5e9;
-
-  --color-night-200: #e2e8f0;
-  --color-night-300: #cbd5e1;
-  --color-night-400: #64748b;
-  --color-night-500: #475569;
-  --color-night-700: #1e293b;
-  --color-night-800: #0d1326;
-  --color-night-900: #060913;
-  --color-night-950: #02040a;
-
-  --color-violet-400: #c471ed;
-
-  --color-glow-amber: #fbbf24;
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-.dark {
-  --background: #02040a;
-  --foreground: #fefeff;
-  --card: #0d1326;
-  --card-foreground: #fefeff;
-  --primary: #38bdf8;
-  --primary-foreground: #060913;
-  --secondary: #1e293b;
-  --secondary-foreground: #bae6fd;
-  --muted: #1e293b;
-  --muted-foreground: #64748b;
-  --accent: #334155;
-  --accent-foreground: #bae6fd;
 }
 
 html {
@@ -68,13 +30,40 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
 }
 
 ::selection {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: #fff;
+  color: #000;
+}
+
+/* Range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid #000;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid #000;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
 }

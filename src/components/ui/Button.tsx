@@ -10,9 +10,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
     
     const variants = {
-      primary: "bg-sky-500 hover:bg-sky-600 text-white focus:ring-sky-500 dark:bg-sky-400 dark:hover:bg-sky-500 dark:text-night-900 dark:focus:ring-sky-400",
-      secondary: "bg-night-100 hover:bg-night-200 text-night-700 focus:ring-night-400 dark:bg-night-700 dark:hover:bg-night-600 dark:text-night-100 dark:focus:ring-night-500",
-      ghost: "bg-transparent hover:bg-night-100 text-night-600 focus:ring-night-400 dark:hover:bg-night-800 dark:text-night-300 dark:focus:ring-night-500",
+      primary: "bg-white text-black hover:bg-neutral-200 focus:ring-white",
+      secondary: "bg-neutral-800 text-neutral-200 hover:bg-neutral-700 focus:ring-neutral-500",
+      ghost: "bg-transparent text-neutral-400 hover:text-white hover:bg-neutral-800 focus:ring-neutral-500",
     };
     
     const sizes = {

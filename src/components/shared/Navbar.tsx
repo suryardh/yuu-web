@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,17 +26,15 @@ export function Navbar() {
     <nav
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-in-out border-b border-transparent ${
         scrolled
-          ? "bg-[#060913]/60 backdrop-blur-xl border-sky-900/30 shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-3"
+          ? "bg-black/60 backdrop-blur-xl border-neutral-800 py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="w-full mx-auto px-6 md:px-8 flex items-center justify-between">
-        {/* Brand */}
         <Link
           href="/"
           className="text-xl md:text-2xl font-light italic text-white flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <span className="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8] animate-pulse" />
           Yuuishikii
         </Link>
 
@@ -51,12 +47,12 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={`text-sm font-light tracking-wide transition-all relative group ${
-                  isActive ? "text-sky-200" : "text-night-400 hover:text-sky-100"
+                  isActive ? "text-white" : "text-neutral-500 hover:text-white"
                 }`}
               >
                 {link.name}
                 <span
-                  className={`absolute -bottom-1.5 left-0 h-px bg-gradient-to-r from-transparent via-sky-400 to-transparent transition-all duration-300 ease-in-out ${
+                  className={`absolute -bottom-1.5 left-0 h-px bg-white transition-all duration-300 ease-in-out ${
                     isActive ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                   }`}
                 />
@@ -68,7 +64,7 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex items-center text-night-200 p-2 -mr-2"
+          className="md:hidden flex items-center text-neutral-200 p-2 -mr-2"
           aria-label="Toggle menu"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,8 +93,8 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`text-sm font-light tracking-wide px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? "text-sky-200 bg-sky-500/10"
-                    : "text-night-400 hover:text-sky-100 hover:bg-night-800/30"
+                    ? "text-white bg-white/5"
+                    : "text-neutral-500 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {link.name}
