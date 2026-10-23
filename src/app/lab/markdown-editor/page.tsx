@@ -5,8 +5,22 @@ import { useState } from "react";
 export default function MarkdownEditorPage() {
   const [md, setMd] = useState(`# Hello World\n\nThis is a **markdown** editor with _live preview_.\n\n- Item 1\n- Item 2\n- Item 3\n\n\`\`\`js\nconst x = 42;\n\`\`\`\n\n> Blockquote here`);
 
+  const escapeHtml = (s: string): string =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+  const sanitizeUrl = (url: string): string => {
+    const u = url.trim();
+    if (/^(https?:|mailto:)/i.test(u) || u.startsWith("/") || u.startsWith("#")) return u;
+    return "#";
+  };
+
   const renderMarkdown = (text: string): string => {
-    let html = text
+    let html = escapeHtml(text)
       // code blocks
       .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 my-3 overflow-x-auto"><code class="text-sm font-mono text-neutral-300">$2</code></pre>')
       // inline code
@@ -19,7 +33,7 @@ export default function MarkdownEditorPage() {
       .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-medium">$1</strong>')
       .replace(/\_(.+?)\_/g, '<em>$1</em>')
       // blockquote
-      .replace(/^> (.+)$/gm, '<blockquote class="border-l-2 border-neutral-600 pl-4 my-3 text-neutral-400 italic">$1</blockquote>')
+      .replace(/^&gt; (.+)$/gm, '<blockquote class="border-l-2 border-neutral-600 pl-4 my-3 text-neutral-400 italic">$1</blockquote>')
       // unordered list
       .replace(/^- (.+)$/gm, '<li class="ml-4 text-neutral-300 list-disc">$1</li>')
       // ordered list
@@ -27,7 +41,7 @@ export default function MarkdownEditorPage() {
       // horizontal rule
       .replace(/^---$/gm, '<hr class="border-neutral-800 my-6" />')
       // links
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-white underline underline-offset-2 hover:text-neutral-300">$1</a>')
+      .replace(/\[(.+?)\]\((.+?)\)/g, (_m, label: string, url: string) => `<a href="${sanitizeUrl(url)}" class="text-white underline underline-offset-2 hover:text-neutral-300">${label}</a>`)
       // paragraphs (lines not already wrapped)
       .replace(/^(?!<[hbluaiop]|<li|<hr|<pre|<code)(.+)$/gm, '<p class="text-neutral-300 leading-relaxed my-2">$1</p>');
 

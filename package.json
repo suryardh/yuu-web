@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "chess.js": "^1.4.0",
-    "next": "^15.5.12",
+    "next": "^15.5.28",
     "nprogress": "^0.2.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -26,5 +26,8 @@
     "playwright": "^1.62.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "sharp": "^0.35.5"
   }
 }
