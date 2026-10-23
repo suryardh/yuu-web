@@ -30,10 +30,25 @@ export default function RegexTesterPage() {
     }
   }, [pattern, flags, testString, replaceStr, showReplace]);
 
+  const escapeHtml = (s: string): string =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
   const highlightMatches = () => {
-    if (result.matches.length === 0) return testString;
-    const regex = new RegExp(pattern, flags.includes("g") ? flags : flags + "g");
-    return testString.replace(regex, (m) => `<mark class="bg-white text-black px-0.5 rounded">${m}</mark>`);
+    if (result.matches.length === 0) return escapeHtml(testString);
+    let out = "";
+    let last = 0;
+    for (const m of result.matches) {
+      out += escapeHtml(testString.slice(last, m.index));
+      out += `<mark class="bg-white text-black px-0.5 rounded">${escapeHtml(m.match)}</mark>`;
+      last = m.index + m.match.length;
+    }
+    out += escapeHtml(testString.slice(last));
+    return out;
   };
 
   return (
